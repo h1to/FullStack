@@ -29,6 +29,14 @@ public class ClientsController {
         return clientRepository.findById(id).orElseThrow(RuntimeException::new);
     }
 
+    @GetMapping("fillDB")
+    public Client fillDB() {
+        Client client = new Client();
+        client.setEmail("example@gmail.com");
+        client.setName("Name");
+        return clientRepository.save(client);
+    }
+
     @PostMapping
     public ResponseEntity createClient(@RequestBody Client client) throws URISyntaxException {
         Client savedClient = clientRepository.save(client);

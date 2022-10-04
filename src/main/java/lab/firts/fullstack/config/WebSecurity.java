@@ -34,6 +34,11 @@ public class WebSecurity {
                 .and()
                 .httpBasic()
                 .and()
+                .formLogin()
+//                .loginPage("index")
+                .loginProcessingUrl("/perform_login")
+                .successForwardUrl("/clients")
+                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

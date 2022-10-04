@@ -61,17 +61,17 @@ class ClientEdit extends Component {
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label for="name">Name</Label>
-                        <Input type="text" name="name" id="name" value={item.name || ''}
+                        <Input type="text" name="name" id="name" required={true} value={item.name || ''}
                                onChange={this.handleChange} autoComplete="name"/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="email">Email</Label>
-                        <Input type="text" name="email" id="email" value={item.email || ''}
+                        <Input type="text" name="email" id="email" required={true} value={item.email || ''}
                                onChange={this.handleChange} autoComplete="email"/>
                     </FormGroup>
                     <FormGroup>
-                        <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/clients">Cancel</Button>
+                        <Button color="primary" type="submit" onClick={() => window.location.href="/clients"}>Save</Button>{' '}
+                        <Button color="secondary" tag={Link} to="/clients" onClick={() => {window.location.href="/clients"}}>Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>

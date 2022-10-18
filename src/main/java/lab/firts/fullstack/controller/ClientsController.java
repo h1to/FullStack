@@ -1,5 +1,6 @@
-package lab.firts.fullstack;
+package lab.firts.fullstack.controller;
 
+import lab.firts.fullstack.entity.AuthenticationBean;
 import lab.firts.fullstack.entity.Client;
 import lab.firts.fullstack.repository.ClientRepo;
 import org.springframework.http.ResponseEntity;
@@ -11,12 +12,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/clients")
+@CrossOrigin(origins={ "http://localhost:3000" })
 public class ClientsController {
 
     private final ClientRepo clientRepository;
 
     public ClientsController(ClientRepo clientRepository) {
         this.clientRepository = clientRepository;
+    }
+
+    @GetMapping("login")
+    public AuthenticationBean helloWorldBean() {
+        return new AuthenticationBean("You are authenticated");
     }
 
     @GetMapping

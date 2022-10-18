@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-logo {
@@ -28,6 +31,11 @@
   color: #61dafb;
 }
 
+.form {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +43,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+input, label {
+  display:block;
 }

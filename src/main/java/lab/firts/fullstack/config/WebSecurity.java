@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,33 +21,20 @@ public class WebSecurity {
         http.csrf()
                 .disable()
                 .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS,"/**")
+                .permitAll()
                 .antMatchers(HttpMethod.DELETE)
                 .hasRole("ADMIN")
-                .antMatchers("/admin/**")
-                .hasAnyRole("ADMIN")
-                .antMatchers("/user/**")
-                .hasAnyRole("USER", "ADMIN")
-                .antMatchers("/login/**")
-                .anonymous()
+                .antMatchers("/clients/login/**")
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .httpBasic()
                 .and()
-                .formLogin()
-//                .loginPage("index")
-                .loginProcessingUrl("/perform_login")
-                .successForwardUrl("/clients")
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .formLogin();
 
         return http.build();
-    }
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/ignore1", "/ignore2");
     }
 
     @Bean
